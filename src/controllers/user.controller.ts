@@ -13,23 +13,23 @@ function validarEmail(email: string): boolean {
     return emailRegex.test(email);
 }
 
-function validarSenha(senha: string): boolean {
-    return !!senha && senha.length >= 6;
+function validarPassword(password: string): boolean {
+    return !!password && password.length >= 6;
 }
 
 export class UserController {
 
     async register(req: Request, res: Response, next: NextFunction) {
         try {
-            const { nome, email, senha } = req.body;
+            const { name, email, password } = req.body;
             if (!validarEmail(email)) {
                 return res.status(400).json({ message: "Invalid email format" });
             }
-            if (!validarSenha(senha)) {
+            if (!validarPassword(password)) {
                 return res.status(400).json({ message: "Invalid password format" });
             }
-            const newUser = await createUser(nome, email, senha);
-            const {senha: _, ...userWithoutPassword} = newUser;
+            const newUser = await createUser(name, email, password);
+            const { senha: _, ...userWithoutPassword} = newUser;
             res.status(201).json(userWithoutPassword);
         } catch (error) {
             next(error);
@@ -37,8 +37,8 @@ export class UserController {
     }
     async login(req: Request, res: Response, next: NextFunction) {
         try {
-            const { email, senha } = req.body;
-            const user = await authenticateUser(email, senha);
+            const { email, password } = req.body;
+            const user = await authenticateUser(email, password);
             if (!user) {
                 return res.status(401).json({ message: "Invalid email or password" });
             }
