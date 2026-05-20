@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { gerarToken, validarToken, extrairToken } from '../src/jwt-utils';
+import { gerarToken, validarToken, extrairToken } from '../src/utils/jwt-utils';
 
 describe('JWT Utils', () => {
   const mockUser = {

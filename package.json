@@ -14,7 +14,7 @@
     "prisma:migrate": "prisma migrate dev --name init",
     "prisma:studio": "prisma studio",
     "crud": "npx ts-node crud-usuarios.ts",
-    "dev": "npx ts-node server.ts"
+    "dev": "npx ts-node src/server.ts"
   },
   "keywords": [],
   "author": "",

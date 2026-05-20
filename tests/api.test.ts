@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { criarUsuario } from '../src/crud-usuarios';
-import { gerarToken } from '../src/jwt-utils';
+import { gerarToken } from '../src/utils/jwt-utils';
 import { PrismaClient } from '@prisma/client';
 
 // Importar o app Express
