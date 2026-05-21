@@ -21,14 +21,14 @@ export class UserController {
 
     async register(req: Request, res: Response, next: NextFunction) {
         try {
-            const { name, email, password } = req.body;
+            const { nome, email, password } = req.body;
             if (!validarEmail(email)) {
                 return res.status(400).json({ message: "Invalid email format" });
             }
             if (!validarPassword(password)) {
                 return res.status(400).json({ message: "Invalid password format" });
             }
-            const newUser = await createUser(name, email, password);
+            const newUser = await createUser(nome, email, password);
             const { senha: _, ...userWithoutPassword} = newUser;
             res.status(201).json(userWithoutPassword);
         } catch (error) {
